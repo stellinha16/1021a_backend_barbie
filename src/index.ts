@@ -35,15 +35,10 @@ app.post('/filmes', (req:Request, res) => {
 
 app.delete('/filmes/:id', (req, res) => {
     const id = parseInt(req.params.id)
-
     const filme = filmes_repositorio.find(filme => filme.id === id)
-
-    if (!filme)  return res.status(404).send(filme)
-
+    if (!filme) return res.status(404).send(filme)
     const filterFilme = filmes_repositorio.filter(filme => filme.id !== id)
-
     filmes_repositorio = filterFilme
-
     res.status(200).send(filme)
 });
 
