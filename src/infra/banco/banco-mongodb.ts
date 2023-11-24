@@ -1,7 +1,7 @@
 import FilmeRepositorioInterface from "../../aplicacao/filme-repositorio-interface";
 import mongoose from 'mongoose'
 require('dotenv').config()
-export default class BancoMongoDB implements FilmeRepositorioInterface{
+export default class BancoMongoDB  implements FilmeRepositorioInterface{
     public filmeModel:any
     constructor(){
         try{
@@ -37,16 +37,15 @@ export default class BancoMongoDB implements FilmeRepositorioInterface{
         
     }
     public async listar(): Promise<Filme[]> {
-        const filmes = await this.filmeModel.find({})
-        return filmes.map((filme:FilmeDTO)=>{
-            return {
-                id: filme._id,
-                titulo: filme.titulo,
-                descricao: filme.descricao,
-                foto: filme.foto
-            }
-        })
-    }
+            const filmes = await this.filmeModel.find({})
+            return filmes.map((filme:FilmeDTO)=>{
+                return {
+                    id: filme._id,
+                    titulo: filme.titulo,
+                    descricao: filme.descricao,
+                    foto: filme.foto
+                }
+            })}
     public desconectar(): void {
         mongoose.disconnect()
     }
